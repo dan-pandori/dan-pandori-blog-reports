@@ -193,7 +193,8 @@ The full paper is a draft.
 
 ## Acknowledgements
 
-This work was part of a SPAR (Supervised Program for Alignment Research) project mentored by Dmitry Manning-Coe. The 9.6M-parameter model and
-its pretraining recipe are Robbie Thompson's. The experiments were run, and this post was drafted, by Claude agents
+This work was part of a SPAR (Supervised Program for Alignment Research) project mentored by Dmitry Manning-Coe, with
+co-mentees Robbie Thompson, Charles Yu and Leon Lenk. The 9.6M-parameter model and its pretraining recipe are
+Robbie's. The experiments were run, and this post was drafted, by Claude agents
 (Anthropic's Claude) that I directed and reviewed; for each result, a separate agent re-derived the numbers from the raw
 files before they were written up.
