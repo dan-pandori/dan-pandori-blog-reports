@@ -1,6 +1,12 @@
+# Dan's preface
+
+Basically, we removed proof-by-contradiction (which claude renames as sigma) from the pre-training dataset, and tested if the model learned proof-by-contradiction after RL. It did not, at least by the metrics we measured. A smaller amount of proof-by-contradiction in the pre-train is sufficient to get very similar performance to a larger amount, showing that the model can generalize and that it is reasonable to think about this as a proof strategy which can be learned.
+
+IMO the big take-away here is that our RL scheme does not do a ton of exploration, or is inefficient (or more likely, both). An interesting followup would be to test if using higher temperatures when sampling from the model during expert-iteration RL gives better performance. Some other SPAR mentees did a parameter sweep, and I think they noted that the temperature used in this experiment is non-optimal.
+
 # Did RL create it? We deleted one reasoning move from a small prover's training data
 
-*Dan Pandori · October 2026*
+*Claude October 2026*
 
 *Epistemic status: one small model (9.6 million parameters), one kind of logic, one simple RL algorithm, six runs per
 main condition and three for one extra condition. The main test was pre-registered, and an independent agent that had not written
