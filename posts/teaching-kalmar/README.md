@@ -1,0 +1,13 @@
+# Teaching Kalmar's Construction Strategy
+
+The [Spar Project](https://sparai.org/projects/f26/rec8qbsiN63iT3e8Z/)'s domain is propositional logic. This domain has a decidable algorithm to generate a proof (or counter-proof) of any theorem. One such algorithm is Kalmar's construction strategy, which was used to show that the domain is decidable.
+
+In my own butchered terms, you enumerate the atoms (in our case [PQRS]) and do case analysis on each possible assignment of truth values. For us, that is at most 2^4 (16) cases. For each case, you either directly show that the theorem-to-be-proved is true, or you select a premise which is false in this case (and use ex falso to then conclude that the theorem-to-be-proved is 'still' true).
+
+I had Claude write up [a short program](https://github.com/chainik1125/nd-rl/blob/dan/code/tools/tt_prover.py) to implement this algorithm. To no one's surprise, it correctly makes proofs in our small domain, and does so very quickly ([longer analysis](https://github.com/chainik1125/nd-rl/blob/dan/docs/project_strategy/kalmar-vs-model-efficiency/README.md)). The lengths of these proofs are exponential relative to the number of atoms considered, so extending our problems to 7-12 atoms lets the models we train have a fighting chance of beating that little script. The script does have the advantage of being immediately intelligible and guaranteed to find a proof or counter-proof though.
+
+Out of morbid curiousity, I tried training the model to use this construction technique. The model gets a lot of the way there, but deterministically following a long procedure over hundreds of steps is not really the strong suite of neural networks. So it beats our default trained model on some classes of problems, but loses on many others (due to failing to follow the procedure with enough exactitude). Claude's analysis is [here](https://github.com/chainik1125/nd-rl/blob/dan/docs/project_strategy/kalmar-vs-model-efficiency/README.md).
+
+I'm not totally sure what to draw from this. Maybe making me even less interested in improving our model's performance, relative to examining learning dynamics. Like, we're not gonna make a better solver, so I just want to understand how learning happens for the current models. Maybe if we train a better model we'd have better external validity since we're at least close to the training efficiency fronter? I don't think I really buy that tho.
+
+So other folks might try to push model performance for the project, but I really don't find it compelling to try to make a 10M parameter model try to beat 200 lines of Python XD
