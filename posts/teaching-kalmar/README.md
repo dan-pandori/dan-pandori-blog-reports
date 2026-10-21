@@ -11,3 +11,14 @@ Out of morbid curiousity, I tried training the model to use this construction te
 I'm not totally sure what to draw from this. Maybe making me even less interested in improving our model's performance, relative to examining learning dynamics. Like, we're not gonna make a better solver, so I just want to understand how learning happens for the current models. Maybe if we train a better model we'd have better external validity since we're at least close to the training efficiency fronter? I don't think I really buy that tho.
 
 So other folks might try to push model performance for the project, but I really don't find it compelling to try to make a 10M parameter model try to beat 200 lines of Python XD
+
+## But how hard actually is Kalmar?
+[680 bytes or less](https://github.com/chainik1125/nd-rl/blob/dan/experiment-summaries/2026-10-20-kalmar-complexity-5443-bit-program-per-step-demand-not-program-length-ranks-kal-d-errors/plain_summary.md), when placed on top of Python (which is of course cheating in many ways). The same analysis showed direct truth table checking was less than a tenth the size.
+
+Over the course of training, the model nominally absorbed many more bits than the length of the program (Claude gives a range of 50-1300X). That makes sense to me intuitively, as training over 155k proofs is gonna be much more than 680 bytes of info.
+
+But it isn't necessarily surprising that the generated proofs do not optimally convey the simple algorithm. I feel like you'd need to have a pretty fancy prior that puts weight on 'simple' algorithms in some sense before you caught on to this pattern from this info. But I'm far from certain of that, it could be that the training had enough data for the model to learn the algorithm & our training procedure was just flawed. Hard to think how to handle partially negative results like this. Its always possible that the answer is a skill issue thing on my part, rather than a fundamental limitation which is interesting & generalizable.
+
+Claude also noted that certain steps are much more error prone than others, particularly searching a formula for the next part not-yet-proved. This makes sense, but honestly wasn't something I had already thought of. Interesting that the algorithm has easier & harder to learn pieces. Claude also trained a small model trying to improve performance on just these difficult steps, and did indeed get some improvements. Neat.
+
+Claude also noted that the length of the generator code does not strictly correspond to the difficulty of learning the procedure, which makes sense but is also good to see cross-checked.
