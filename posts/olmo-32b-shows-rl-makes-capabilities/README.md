@@ -32,6 +32,8 @@ Almost certainly. To further test this, we gave the DPO model (ie, just before R
 
 The notes were generally quite helpful though. Without notes, the RL model only succeeds 8% of the time (and giving it the DPO model's notes from a failed attempt lowers success to 6%). Trimming the notes (cutting off some fraction of the end of the notes) did gradually reduce performance, in a manner roughly compatible with the notes giving useful direction (rather than one big useful gestalt only functional as a whole).
 
+If we tell the pre-RL model to 'answer in at most 60 words' as a brevity hint, [about a third of the post-RL'ed successes are also reachable by the DPO model](https://github.com/chainik1125/nd-rl/blob/dan/experiment-summaries/2026-11-06-olmo-iffu-brevity-hint-elicits-dpo-on-15-16-of-48-if-reach-prompts-10-of-10-survive-1024-draws-token-budget-on-1-of-3-geometry/README.md). So some of what the RL model learns is to be brief, at least if there are hard rules that must be obeyed (since it is often easier to obey hard rules for a shorter output).
+
 ## How about OLMO 7B?
 
 Less strong results. The RL'ed model [mostly seems to be gaming the checker rather than producing valid & interesting responses for IFBench](https://github.com/chainik1125/nd-rl/blob/dan/experiment-summaries/2026-11-08-olmo-rlzero-if-rl-zero-games-if-checkers-94pct-ifbench-hand-reach-5-format-prompts-ifeval-inconclusive/plain_summary.md).  Claude puts this as without SFT, RL doesn't add real capabilities. And that is possible, but it is also fair to say that 32B is a much larger model with noticeably different training, and the absence of SFT from the 7B training was merely one such change.
