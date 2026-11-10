@@ -6,6 +6,8 @@
 
 The [ProRL paper](https://arxiv.org/abs/2505.24864) finds the obvious result. If you do more RL, and do it well, you'll get new capabilities even using the criteria of 'the post-RL model can succeed with pass@1 where the pre-RL model fails with pass@256'. They note that their results were somewhat limited, and the models trained were better at formatting, with it not being 100% clear that RL gave new interesting capabilities beyond format following. ProRL also didn't do a 'ton' of RL, only about [2% or less of its compute budget](https://github.com/chainik1125/nd-rl/blob/dan/docs/literature/2026-11-06-olmo-novelty/REVIEW.md). This is much less than DeepSeek V3.2, which [claims upwards of 10% budget on RL](https://github.com/chainik1125/nd-rl/blob/dan/docs/literature/2026-11-06-olmo-novelty/REVIEW.md) (although they don't say how much of their compute budget is spent distilling off of Claude & ChatGPT, so take these figures with a grain of salt).
 
+I'm gonna be talking about 'creating capabilities' in this post, and to be [extra pedantic](https://github.com/dan-pandori/dan-pandori-blog-reports/blob/main/posts/elicitation-vs-emergence/README.md) I mean improving success rate for a given compute budget.
+
 ## Results for OLMO 32B
 
 OK, so small amounts of RL (sub 0.1%) can maybe be described improving pass@1 at the expense of pass@k. But lots of RL (more than 2%) seems like it is capable of installing new capabilities. It would be really cool to have a near frontier scale model, which had pre-training and RL steps, and which open sourced the weights as various checkpoints, so that we could test before & after RL. OLMO 32B fits the bill exactly.
